@@ -1,0 +1,10 @@
+@use "../../scss/" as *;
+
+.main-wrapper {
+    display: flex;
+    position: relative;
+
+    &__content {
+        flex: 1;
+    }
+}

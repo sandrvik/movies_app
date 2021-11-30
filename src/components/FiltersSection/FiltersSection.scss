@@ -1,0 +1,15 @@
+.filters {
+    max-width: 258px;
+    padding: 3rem 0.5rem;
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        & > .btn {
+            margin-bottom: 15px;
+        }
+    }
+}

@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
-// import filmsReducer from './reducers/filmsReducer';
+import authReducer from './reducers/authReducer';
+import filmReducer from './reducers/filmReducer';
+import filmsReducer from './reducers/filmsReducer';
+import errorsReducer from './reducers/errorsReducer';
 
 export default combineReducers({
-    // films: filmsReducer,
+    auth: authReducer,
+    films: filmsReducer,
+    film: filmReducer,
+    errors: errorsReducer
 })
