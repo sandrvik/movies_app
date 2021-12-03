@@ -1,8 +1,9 @@
+import { Alert } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteError } from '../../store/actions/errorsActions'
 
-export const Err = ({ title, id }) => {
+export const ErrorMessage = ({ title, id }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -10,6 +11,6 @@ export const Err = ({ title, id }) => {
     }, [dispatch, id])
 
     return (
-        <span>{title}</span>
+        <Alert variant="filled" severity="error">{title}</Alert>
     )
 }

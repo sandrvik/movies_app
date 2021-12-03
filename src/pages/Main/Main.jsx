@@ -27,6 +27,7 @@ export const Main = () => {
         else if (films.length === 0) dispatch(getFilms())
     }, [dispatch, films.length, searchQuery])
 
+
     return (
         <div className="container">
             <div className="section">

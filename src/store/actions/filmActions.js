@@ -25,7 +25,6 @@ export const loadFilm = (id) => (dispatch) => {
         axios.get(`${apiConfig.baseUrl}movie/${id}?${apiConfig.apiKey}`).then(response => {
             dispatch(getFilm(response.data))
         }).catch(err => {
-            console.log('ERROR: ', err)
             dispatch(setError(err.message))
         })
     } catch (err) {

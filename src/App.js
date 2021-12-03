@@ -1,13 +1,14 @@
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router';
-import './App.scss';
 import store from './store/store';
 import { Layout } from './pages/Layout/Layout';
 import { privateRoutes, publicRoutes } from './routes';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import { ErrorsSection } from './components/ErrorsSection/ErrorsSection';
+
+import './App.scss';
 
 function App() {
 

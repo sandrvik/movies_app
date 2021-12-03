@@ -26,3 +26,8 @@ export const ERRORS_TYPES = Object.freeze({
     RESET_ERRORS: 'RESET_ERRORS',
     DELETE_ERROR: 'DELETE_ERROR'
 })
+
+export const AUTH_TYPES = Object.freeze({
+    LOG_IN: 'LOG_IN',
+    LOG_OUT: 'LOG_OUT'
+})

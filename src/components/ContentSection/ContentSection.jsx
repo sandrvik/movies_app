@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector  } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changePage } from '../../store/actions/filmsActions';
 import { MovieCard } from '../MovieCard/MovieCard';
 import { Pagination, Skeleton } from '@mui/material';
@@ -7,39 +7,37 @@ import { Box, styled } from '@mui/system';
 
 import './ContentSection.scss';
 
+const CustomPagination = styled(Pagination)`
+margin-top: 50px;
+
+& .MuiPagination-ul {
+    justify-content: center;
+}
+
+& .MuiPaginationItem-text {
+    background-color: black;
+color: #dfdfdf;
+font-weight: 600;
+}
+
+& .Mui-selected {
+   color: #ffcc00;
+}
+`
+
 export const ContentSection = (props) => {
     const dispatch = useDispatch();
 
-    const loading = useSelector(({ films: { loading } }) => {
-        return loading
-    })
-    const pagination = useSelector(({ films: { pagination } }) => {
-        return pagination
-    })
+    const loading = useSelector(({ films: { loading } }) => loading)
+    const pagination = useSelector(({ films: { pagination } }) => pagination)
+
+    const user = useSelector(({ auth: { user } }) => user)
 
     const handleChangePage = (_, value) => {
         dispatch(changePage(value))
         props.getData()
         window.scrollTo(0, 0)
     }
-
-    const CustomPagination = styled(Pagination)`
-    margin-top: 50px;
-
-    & .MuiPagination-ul {
-        justify-content: center;
-    }
-
-    & .MuiPaginationItem-text {
-        background-color: black;
-    color: #dfdfdf;
-    font-weight: 600;
-  }
-
-  & .Mui-selected {
-       color: #ffcc00;
-  }
-`;
 
     return (
         <div className="section">
@@ -48,7 +46,7 @@ export const ContentSection = (props) => {
                     {(loading ? Array.from(new Array(20)) : props.films).map((film, id) => (
                         <React.Fragment key={id}>
                             {film ? (
-                                <MovieCard film={film} />
+                                <MovieCard film={film} user={user} />
                             ) : (
                                 <Box sx={{ margin: '20px' }}>
                                     <Skeleton variant="rectangular" width={220} height={340} />

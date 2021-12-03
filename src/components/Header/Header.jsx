@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { AccountMenu } from '../AccountMenu/AccountMenu';
 
 import './Header.scss';
 
@@ -55,6 +56,7 @@ export const Header = () => {
                             </li>
                         ))
                     }
+                    <AccountMenu />
                 </ul>
             </div>
         </div>

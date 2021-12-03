@@ -119,7 +119,6 @@ export const getFilms = (type) => (dispatch, getState) => {
 
         promise.then(response => {
             dispatch(setMaxPage(response.data.total_pages))
-            console.log('results', response.data.results)
             dispatch(setFilms(response.data.results.length ? response.data.results : 'Films Not Found'))
         }).catch(err => {
             dispatch(setError(err.message))

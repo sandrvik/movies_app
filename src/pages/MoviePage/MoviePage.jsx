@@ -41,7 +41,8 @@ export const MoviePage = () => {
                         <div
                             className="banner"
                             style={{
-                                backgroundImage: `url(${src})`, filter: blur ? "blur(20px)" : "none",
+                                backgroundImage: `url(${src})`,
+                                filter: blur ? "blur(20px)" : "none",
                                 transition: blur ? "none" : "filter 0.3s ease-out"
                             }}>
                         </div>

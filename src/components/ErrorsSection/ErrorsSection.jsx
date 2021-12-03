@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
-import { Err } from '../Err/Err';
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
 export const ErrorsSection = () => {
     const errors = useSelector(({ errors: { errors } }) => errors)
@@ -9,7 +9,7 @@ export const ErrorsSection = () => {
     return ReactDOM.createPortal(
         <div style={{ position: 'absolute', top: '5%', right: '50%' }}>
             {errors.map((error, id) => {
-                return <Err key={id} title={error} id={id} />
+                return <ErrorMessage key={id} title={error} id={id} />
             })}
         </div>
         , document.body);

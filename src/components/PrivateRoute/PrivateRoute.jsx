@@ -4,11 +4,10 @@ import { Route, Redirect } from 'react-router-dom';
 
 function PrivateRoute({ component: Component, ...rest }) {
 
-    // const { isAuthenticated } = useSelector(({ auth }) => ({
-    //     isAuthenticated: auth.isAuthenticated
-    // }))
+    const isAuthenticated = useSelector(({ auth: { isAuthenticated } }) => isAuthenticated)
 
-    const isAuthenticated = true
+    // const isAuthenticated = true
+
 
     return (
         <Route
