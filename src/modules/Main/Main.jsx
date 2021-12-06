@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { ContentSection } from '../../components/ContentSection/ContentSection';
 import { FiltersSection } from '../../components/FiltersSection/FiltersSection';
 import { getFilms, resetFilms, resetPage, setSearchQuery } from '../../store/actions/filmsActions';
@@ -22,9 +23,10 @@ export const Main = () => {
             dispatch(setSearchQuery(''))
             dispatch(resetFilms)
             dispatch(resetPage)
+        }
+        else if (films.length === 0) {
             dispatch(getFilms())
         }
-        else if (films.length === 0) dispatch(getFilms())
     }, [dispatch, films.length, searchQuery])
 
 

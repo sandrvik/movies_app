@@ -4,16 +4,21 @@ const useProgressiveImg = (lowQualitySrc, highQualitySrc) => {
     const isMountedRef = useRef(null)
     const [src, setSrc] = useState(lowQualitySrc);
 
+    const imgPath = lowQualitySrc.split('/').at(-1)
+
     useEffect(() => {
         isMountedRef.current = true
-        setSrc(lowQualitySrc);
-        const img = new Image();
-        img.src = highQualitySrc;
-        img.onload = () => {
-            if (isMountedRef.current) setSrc(highQualitySrc);
-        };
+        if (imgPath !== 'undefined') {
+            setSrc(lowQualitySrc);
+            const img = new Image();
+            img.src = highQualitySrc;
+            img.onload = () => {
+                if (isMountedRef.current) setSrc(highQualitySrc);
+            }
+        }
         return () => isMountedRef.current = false
-    }, [lowQualitySrc, highQualitySrc]);
+    }, [lowQualitySrc, highQualitySrc, imgPath]);
+
     return [src, { blur: src === lowQualitySrc }];
 };
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { setDateFrom, setDateTo } from '../../store/actions/filmsActions';
-import { FormControl, TextField } from '@mui/material';
+
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { FormControl, TextField } from '@mui/material';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { styled } from '@mui/system';
@@ -11,27 +13,39 @@ const CustomFormControl = styled(FormControl)`
 width: 250px;
 color: white;
 margin-bottom: 20px;
-
-& .MuiInputBase-root {
-    font-family: inherit;
-    color: white;
-    font-weight: 600;
-    border: 1px solid white;
-    margin-bottom: 10px;
+& .MuiTextField-root {
+    margin: 0.5rem 0;
+    font-family: Montserrat;
 }
-
-& .MuiSvgIcon-root{
-    color: #ffcc00;
+& .MuiOutlinedInput-root {
+    &:hover .MuiOutlinedInput-notchedOutline {
+        border: 1px solid #ffcc00;
+    }
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border: 3px solid #ffcc00;
+    }
 }
-
-& .MuiInput-root::after {
-    border: 1px solid #ffcc00;
+& .MuiOutlinedInput-input {
+    font-family: Montserrat;
 }
-
+& .MuiOutlinedInput-notchedOutline {
+    border: 1px solid #ffffffa6;
+}
 & .MuiInputLabel-root {
+    font-family: Montserrat;
+    color: #ffffffa6;
+    &.Mui-focused {
+        color: #ffffffa6;
+    }
+}
+& .MuiOutlinedInput-input {
     color: white;
-    font-weight: 700;
-    font-family: inherit;
+}
+& .MuiButtonBase-root {
+    color: #ffffffa6;
+    &:hover {
+        color: #ffcc00;
+    }
 }
 `
 export const DateFilter = () => {

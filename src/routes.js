@@ -1,8 +1,9 @@
 import { SignIn } from "./components/SignIn/SignIn";
 import { SignUp } from "./components/SignUp/SignUp";
-import { Main } from "./pages/Main/Main";
-import { MoviePage } from "./pages/MoviePage/MoviePage";
-import { Search } from "./pages/Search/Search";
+import { Favorites } from "./modules/Favorites/Favorites";
+import { Main } from "./modules/Main/Main";
+import { MoviePage } from "./modules/MoviePage/MoviePage";
+import { Search } from "./modules/Search/Search";
 
 export const publicRoutes = [
     {
@@ -37,5 +38,11 @@ export const privateRoutes = [
         path: '/movie/:id',
         component: MoviePage,
         exact: true,
-    }
+    },
+    {
+        key: 'favorites',
+        path: '/favorites',
+        component: Favorites,
+        exact: true,
+    },
 ]

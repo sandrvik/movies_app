@@ -18,15 +18,12 @@ export const resetMovie = {
     type: FILM_TYPES.RESET_FILM
 }
 
-export const loadFilm = (id) => (dispatch) => {
+export const loadFilm = (id) => async (dispatch) => {
     dispatch(resetErrors)
     dispatch(startLoading)
     try {
-        axios.get(`${apiConfig.baseUrl}movie/${id}?${apiConfig.apiKey}`).then(response => {
-            dispatch(getFilm(response.data))
-        }).catch(err => {
-            dispatch(setError(err.message))
-        })
+        const response = await axios.get(`${apiConfig.baseUrl}movie/${id}?${apiConfig.apiKey}`)
+        dispatch(getFilm(response.data))
     } catch (err) {
         dispatch(setError(err.message))
     }

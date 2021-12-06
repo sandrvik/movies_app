@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetMovie, loadFilm } from '../../store/actions/filmActions';
-import useProgressiveImg from '../../helpers/useProgresiveImage';
-import apiConfig from '../../api/apiConfig';
 
+import { resetMovie, loadFilm } from '../../store/actions/filmActions';
+import apiConfig from '../../api/apiConfig';
+import useProgressiveImg from '../../helpers/useProgresiveImage';
+
+import { Heart } from '../../components/Heart/Heart';
 import './MoviePage.scss';
 
-export const MoviePage = () => {
+export const MoviePage = ({ user }) => {
     const dispatch = useDispatch()
     const history = useHistory();
     const { id: movieId } = useParams()
@@ -36,7 +38,7 @@ export const MoviePage = () => {
     return (
         <>
             {
-                item && (
+                (src.split('/').at(-1) !== 'undefined') && (
                     <>
                         <div
                             className="banner"
@@ -48,8 +50,10 @@ export const MoviePage = () => {
                         </div>
                         <div className="mb-3 movie-content container">
                             <div className="movie-content__info">
+
                                 <h1 className="title">
-                                    {item.title || item.name}
+                                    {item.title || item.name}{item.id && <Heart item={item} user={user} className="heart" />
+                                    }
                                 </h1>
                                 <div className="genres">
                                     {

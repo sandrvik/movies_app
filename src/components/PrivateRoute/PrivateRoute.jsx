@@ -5,8 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 function PrivateRoute({ component: Component, ...rest }) {
 
     const isAuthenticated = useSelector(({ auth: { isAuthenticated } }) => isAuthenticated)
-
-    // const isAuthenticated = true
+    const user = useSelector(({ auth: { user } }) => user)
 
 
     return (
@@ -16,7 +15,7 @@ function PrivateRoute({ component: Component, ...rest }) {
                 () => (
                     isAuthenticated
                         ? (
-                            <Component />
+                            <Component user={user} />
                         ) : (
                             <Redirect
                                 to="/signin"

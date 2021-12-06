@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { resetPage, setSearchQuery, getFilms } from '../../store/actions/filmsActions';
 import Button from '../Button/Button';
 

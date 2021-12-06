@@ -90,15 +90,15 @@ export const setSearchQuery = (query) => {
 }
 
 
-export const getFilms = (type) => (dispatch, getState) => {
+export const getFilms = (type) => async (dispatch, getState) => {
     try {
         dispatch(resetErrors)
         dispatch(startLoading)
-        let promise;
+        let response;
 
         switch (type) {
             case 'search':
-                promise = axios.get(`${apiConfig.baseUrl}search/movie?${apiConfig.apiKey}`, {
+                response = await axios.get(`${apiConfig.baseUrl}search/movie?${apiConfig.apiKey}`, {
                     params: {
                         page: getState().films.pagination.currentPage,
                         query: getState().films.filters.query
@@ -106,7 +106,7 @@ export const getFilms = (type) => (dispatch, getState) => {
                 })
                 break
             default:
-                promise = axios.get(`${apiConfig.baseUrl}discover/movie?${apiConfig.apiKey}`, {
+                response = await axios.get(`${apiConfig.baseUrl}discover/movie?${apiConfig.apiKey}`, {
                     params: {
                         ...getState().films.filters,
                         with_genres: '' + getState().films.filters.with_genres,
@@ -117,12 +117,24 @@ export const getFilms = (type) => (dispatch, getState) => {
                 })
         }
 
-        promise.then(response => {
-            dispatch(setMaxPage(response.data.total_pages))
-            dispatch(setFilms(response.data.results.length ? response.data.results : 'Films Not Found'))
-        }).catch(err => {
-            dispatch(setError(err.message))
-        })
+        dispatch(setMaxPage(response.data.total_pages))
+        dispatch(setFilms(response.data.results.length ? response.data.results : 'Films Not Found'))
+    } catch (err) {
+        dispatch(setError(err.message))
+    }
+}
+
+export const loadFavs = (ids) => async (dispatch) => {
+    dispatch(resetErrors)
+    dispatch(startLoading)
+    try {
+        const response = await Promise.all(ids.map(id => {
+            return new Promise(async (resolve) => {
+                const response = await axios.get(`${apiConfig.baseUrl}movie/${id}?${apiConfig.apiKey}`)
+                resolve(response.data)
+            })
+        }))
+        dispatch(setFilms(response.length ? response : 'Favorites list is empty'))
     } catch (err) {
         dispatch(setError(err.message))
     }

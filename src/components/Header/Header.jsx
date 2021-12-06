@@ -14,8 +14,8 @@ const headerNav = [
         path: '/search'
     },
     {
-        display: 'Favourites',
-        path: '/favourites'
+        display: 'Favorites',
+        path: '/favorites'
     }
 ];
 
@@ -43,7 +43,6 @@ export const Header = () => {
         <div ref={headerRef} className="header">
             <div className="header__wrap container">
                 <div className="logo">
-                    {/* <img src={logo} alt="" /> */}
                     <Link to="/">MoviesApp</Link>
                 </div>
                 <ul className="header__nav">

@@ -10,3 +10,9 @@ export const toggleFavourites = (id, user) => {
 
     localStorage.setItem(user, updatedUser)
 }
+
+export const isIdinFavourites = (id, user) => {
+    const userInfo = JSON.parse(localStorage.getItem(user))
+
+    return userInfo.favs.includes(id)
+}
