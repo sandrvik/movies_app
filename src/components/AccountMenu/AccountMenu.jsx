@@ -28,8 +28,6 @@ export const AccountMenu = () => {
         setAnchorEl(null);
     };
 
-
-
     return (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>

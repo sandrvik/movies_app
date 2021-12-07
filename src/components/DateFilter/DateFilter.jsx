@@ -51,8 +51,10 @@ margin-bottom: 20px;
 export const DateFilter = () => {
     const dispatch = useDispatch()
 
-    const dateFrom = useSelector(({ films: { filters } }) => filters['release_date.gte'])
-    const dateTo = useSelector(({ films: { filters } }) => filters['release_date.lte'])
+    const { dateFrom, dateTo } = useSelector(({ films: { filters } }) => ({
+        dateFrom: filters['release_date.gte'],
+        dateTo: filters['release_date.lte']
+    }))
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
